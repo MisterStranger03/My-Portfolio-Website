@@ -19,14 +19,28 @@
       </div>
     <nav>
         <div class="logo">Raman's Portfolio</div>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <button class="toggle-button" onclick="toggleMode()">🌙</button>
+        <div class="nav-right">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            </div>
+
+            <!-- Analog Clock Start -->
+            <div id="watch" class="watch">
+              <div class="frame-face"></div>
+              <ul class="minute-marks"></ul>
+              <div class="hand hour"></div>
+              <div class="hand minute"></div>
+              <div class="hand second"></div>
+              <div class="center-dot"></div>
+            </div>
+            <!-- Analog Clock End -->
+            <button class="toggle-button" onclick="toggleMode()">🌙</button>
+        
     </nav>
 
     <div class="hero">
@@ -70,15 +84,15 @@
             <div class="projects-container">
                 <div class="project-card">
                     <img src="project1.jpg" alt="Project 1">
-                    <h3>Project Title 1</h3>
+                    <h3>University Management Application</h3>
                 </div>
                 <div class="project-card">
                     <img src="project2.jpg" alt="Project 2">
-                    <h3>Project Title 2</h3>
+                    <h3>Chat Application (Java)</h3>
                 </div>
                 <div class="project-card">
                     <img src="project3.jpg" alt="Project 3">
-                    <h3>Project Title 3</h3>
+                    <h3>Learnify AI</h3>
                 </div>
             </div>
         </section>
@@ -88,36 +102,36 @@
             <div class="education">
                 <div class="flash-card" onclick="expandCard(this)">
                     <img src="https://via.placeholder.com/300x200" alt="Institution 1">
-                    <div class="flash-card-overlay">2016-2020</div>
+                    <div class="flash-card-overlay">2023-2027</div>
                     <div class="flash-card-details">
-                        <h3>Institution 1</h3>
+                        <h3>Indian Institute of Information Technology Kalyani</h3>
                         <div class="details-body">
-                            <p>Bachelor of Science in Computer Science (2016-2020)</p>
+                            <p>Bachelor of Technology in Computer Science and Engineering <br>(2023-2027)</p>
                         </div>
                     </div>
                 </div>
         
                 <div class="flash-card" onclick="expandCard(this)">
                     <img src="https://via.placeholder.com/300x200" alt="Institution 2">
-                    <div class="flash-card-overlay">2020-2022</div>
+                    <div class="flash-card-overlay">2021-2023</div>
                     <div class="flash-card-details">
-                        <h3>Institution 2</h3>
+                        <h3>Seth Anandram Jaipuria School Vasundhara</h3>
                         <div class="details-body">
-                            <p>Master's in Data Science (2020-2022)</p>
+                            <p>Class 11th & 12th, CBSE <br>(2021-2023)</p>
                         </div>
                     </div>
                 </div>
         
-                <div class="flash-card" onclick="expandCard(this)">
+                <!-- <div class="flash-card" onclick="expandCard(this)">
                     <img src="https://via.placeholder.com/300x200" alt="Institution 3">
                     <div class="flash-card-overlay">2023</div>
                     <div class="flash-card-details">
-                        <h3>Institution 3</h3>
+                        <h3>Sun Valley International School</h3>
                         <div class="details-body">
                             <p>Certification in AI and Machine Learning (2023)</p>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </section>
 
@@ -136,14 +150,21 @@
                 <div class="ball" data-skill="Node.js">Node.js</div>
                 <div class="ball" data-skill="SQL">SQL</div>
                 <div class="ball" data-skill="Git">Git</div>
-                <div class="ball" data-skill="Vue">Vue</div>
+                <div class="ball" data-skill="Vue">Angular</div>
                 <div class="ball" data-skill="Django">Django</div>
                 <div class="ball" data-skill="MongoDB">MongoDB</div>
-                <div class="ball" data-skill="AWS">AWS</div>
-                <div class="ball" data-skill="Docker">Docker</div>
-                <div class="ball" data-skill="Kubernetes">Kubernetes</div>
+                <div class="ball" data-skill="Flask">Flask</div>
+                <div class="ball" data-skill="TypeScript">TypeScript</div>
+                <div class="ball" data-skill="Figma">Figma</div>
+                <div class="ball" data-skill="Canva">Canva</div>
+                <div class="ball" data-skill="Pandas">Pandas</div>
+                <div class="ball" data-skill="NumPy">NumPy</div>
+                <div class="ball" data-skill="TensorFlow">TensorFlow</div>
+                <!-- <div class="ball" data-skill="AWS">AWS</div> -->
+                <!-- <div class="ball" data-skill="Docker">Docker</div> -->
+                <!-- <div class="ball" data-skill="Kubernetes">Kubernetes</div> -->
                 <div class="ball" data-skill="Java">Java</div>
-                <div class="ball" data-skill="Swift">Swift</div>
+                <!-- <div class="ball" data-skill="Swift">Swift</div> -->
               </div>
             </div>
           </section>
@@ -167,7 +188,7 @@
     </main>
 
     <footer>
-        Copyright © Raman's Portfolio 2024
+        Copyright © Raman's Portfolio 2025
     </footer>
 </body>
 

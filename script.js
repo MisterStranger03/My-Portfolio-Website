@@ -136,3 +136,34 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+// Analog Clock
+(function() {
+  const marks = document.querySelector('#watch .minute-marks');
+  if (marks && marks.children.length === 0) {
+    for (let i = 0; i < 60; i++) {
+      const li = document.createElement('li');
+      li.style.transform = `rotate(${i * 6}deg) translateY(-26px)`;
+      marks.appendChild(li);
+    }
+  }
+  function updateClock() {
+    const now = new Date();
+    const hour = now.getHours() % 12;
+    const minute = now.getMinutes();
+    const second = now.getSeconds();
+    const hourHand = document.querySelector('#watch .hand.hour');
+    const minuteHand = document.querySelector('#watch .hand.minute');
+    const secondHand = document.querySelector('#watch .hand.second');
+    if (hourHand && minuteHand && secondHand) {
+      hourHand.style.transform =
+        `translate(-50%, 0) rotate(${(hour + minute/60) * 30}deg)`;
+      minuteHand.style.transform =
+        `translate(-50%, 0) rotate(${(minute + second/60) * 6}deg)`;
+      secondHand.style.transform =
+        `translate(-50%, 0) rotate(${second * 6}deg)`;
+    }
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
+})();
