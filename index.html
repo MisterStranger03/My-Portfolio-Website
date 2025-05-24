@@ -78,7 +78,7 @@
                 <button>Contact Me</button>
             </div>
         </header>
-        <div class="scroll-indicator">Scroll down</div>
+        <div class="scroll-indicator"><a class="scroll-down" href="#projects">Scroll down</a></div>
     
         <!-- Music Button and Controls inside Hero -->
         <div class="music-container">
@@ -88,6 +88,7 @@
             <div class="music-bar collapsed" id="musicBar">
                 <div class="music-expanded">
                     <img src="album-art.jpg" alt="Album Art" class="album-art">
+                    <div class="music-name" style="text-wrap: normal; color: black;">Finding Her</div>
                     <div class="controls">
                         <button class="control-btn" id="rewindBtn">⏪</button>
                         <button class="control-btn" id="playPauseBtn">▶️</button>
@@ -96,6 +97,10 @@
                     <div class="progress-bar">
                         <div class="progress" id="progress"></div>
                     </div>
+                    <audio src="assets/Finding Her.mp3" id="audioPlayer"></audio>
+                    
+                    <div class="music-dropdown" id="musicDropdown" style="display: none;"></div>
+                    <button class="expand-music" id="expandMusicBtn">Expand</button>
                 </div>
             </div>
         </div>
@@ -123,9 +128,12 @@
         <section id="education" class="projects-section">
             <h2>Education</h2>
             <div class="education">
+                <div class="flash-card-glow">
                 <div class="flash-card" onclick="expandCard(this)">
-                    <img src="https://via.placeholder.com/300x200" alt="Institution 1">
-                    <div class="flash-card-overlay">2023-2027</div>
+                    <img src="assets/iiitk.png" alt="Institution 1">
+                    <div class="flash-card-overlay">
+                        <img class="logo" src="assets/iiitklogo.png" alt="logoiiitk">
+                        2023-2027</div>
                     <div class="flash-card-details">
                         <h3>Indian Institute of Information Technology Kalyani</h3>
                         <div class="details-body">
@@ -133,16 +141,21 @@
                         </div>
                     </div>
                 </div>
-        
+                </div>
+                
+                <div class="flash-card-glow">
                 <div class="flash-card" onclick="expandCard(this)">
-                    <img src="https://via.placeholder.com/300x200" alt="Institution 2">
-                    <div class="flash-card-overlay">2021-2023</div>
+                    <img src="assets/sajs.png" alt="Institution 2">
+                    <div class="flash-card-overlay">
+                        <img class="logo" src="assets/sajslogo.png" alt="logosajs">
+                        2021-2023</div>
                     <div class="flash-card-details">
                         <h3>Seth Anandram Jaipuria School Vasundhara</h3>
                         <div class="details-body">
                             <p>Class 11th & 12th, CBSE <br>(2021-2023)</p>
                         </div>
                     </div>
+                </div>
                 </div>
         
                 <!-- <div class="flash-card" onclick="expandCard(this)">

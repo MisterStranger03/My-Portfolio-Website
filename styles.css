@@ -241,8 +241,35 @@
     position: relative; /* Ensure that the button is positioned correctly */
     z-index: 5; /* Make sure the button is interactive above other elements */
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 123, 255, 0.4);
+    overflow: visible;
+    z-index: 1;
 }
 
+
+
+.hero .cta button::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -18px;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 32px;
+    border-radius: 50%;
+    filter: blur(8px); /* Less blur for a sharper glow */
+    z-index: -1000;
+    background: linear-gradient(90deg, #a259ff, #f857a6, #ff5858, #43cea2, #185a9d);
+    background-size: 200% 200%;
+    animation: glow-animate 2s linear infinite;
+    opacity: 0.5; /* Full opacity for maximum brightness */
+    pointer-events: none;
+}
+
+@keyframes glow-animate {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
 /* Hover effect for buttons */
 .hero .cta button:hover {
     background-color: black;
@@ -390,11 +417,12 @@
 
 
 .hero .music-bar:not(.collapsed) {
-    width: 320px;
+    width: 480px;
 }
 
 /* Expanded music controls */
 .hero .music-expanded {
+  position: relative;
     display: flex;
     align-items: center;
     width: 100%;
@@ -402,6 +430,7 @@
     opacity: 0;
     transition: opacity 0.3s ease;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2), 0 0 20px rgba(255, 0, 255, 0.7);
+    border-radius: 20px;
 }
 
 .hero .music-bar:not(.collapsed) .music-expanded {
@@ -414,6 +443,8 @@
     border-radius: 8px;
     margin-right: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    object-fit: cover;
+    flex-shrink: 0;
 }
 
 /* Music logo */
@@ -421,8 +452,11 @@
     display: flex;
     justify-content: center; /* Center the buttons */
     align-items: center;
-    flex: 1;
+    /* flex: 1; */
+    margin-left: 12%;
     gap: 15px; /* Adjusted spacing between buttons */
+    flex-shrink: 0;
+    flex-grow: 0;
 }
 
 /* Control buttons */
@@ -442,8 +476,9 @@
 .hero .progress-bar {
     position: absolute;
     bottom: 5px;
-    left: 0;
-    width: 100%;
+    left: 180px;
+    /* right: 200px; */
+    width: 35%;
     height: 4px;
     background: rgba(255, 255, 255, 0.3);
     border-radius: 2px;
@@ -453,10 +488,14 @@
 .hero .progress {
     width: 0%; /* Dynamic value */
     height: 100%;
-    background: white;
+    background: rgb(0, 0, 0);
     transition: width 0.3s ease;
 }
 
+.expand-music {
+  margin-left: 12% ;
+  font-size: 8px;
+}
 
 
         main {
@@ -513,6 +552,7 @@
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 
 .project-card img {
     width: 100%;
@@ -573,11 +613,45 @@
     background-color: white;
     display: flex;
     align-items: center;
+
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+
+}
+.flash-card:hover::after, .flash-card:hover::before {
+  
+  position: absolute;
+  content: '';
+  height: 100%;
+  width: 100%;
+  z-index: -10;
+  /* padding: 180px; */
+  border-radius: 2px;
+  background-image: conic-gradient(from var(--angle)red,green,blue,rgb(224, 5, 119),red);
+  animation: 3s spin linear infinite;
+}
+
+.flash-card:hover::before {
+  filter: blur(1.5rem);
+  opacity: 1;
+}
+
+@keyframes spin {
+  from {
+    --angle:0deg;
+  }
+  to {
+    --angle:360deg;
+  }
 }
 
 .flash-card:hover {
     transform: scale(1.05); /* Adds hover scaling effect */
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 123, 255, 0.4); /* Enhanced glow on hover */
+    /* box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 123, 255, 0.4);  */
 }
 
 .flash-card img {
@@ -603,6 +677,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     background-color: rgba(0, 0, 0, 0.6); /* Dark overlay */
     color: white;
     font-size: 1.2rem;
@@ -610,6 +685,18 @@
     opacity: 0;
     transition: opacity 0.3s ease;
 }
+
+.flash-card-overlay .logo {
+  display: block;
+  margin-bottom: 8px;
+  max-width: 95px;
+  max-height: 110px;
+}
+
+.flash-card-overlay img[alt="logosajs"] {
+    border-radius: 10px; /* Adjust the px value for more/less rounding */
+}
+
 
 .flash-card:hover .flash-card-overlay {
     opacity: 1; /* Show overlay on hover */
@@ -999,6 +1086,8 @@ input, button, textarea, a {
   justify-content: center;
   left: 15%;
   /* border: 1px black; */
+  /* transform: rotate(5deg); */
+  
 }
 
 #watch .frame-face {
@@ -1037,6 +1126,7 @@ input, button, textarea, a {
   list-style: none;
   margin: 0;
   padding: 0;
+  transform: rotate(6deg) !important;
 }
 
 #watch .minute-marks li {
@@ -1066,6 +1156,7 @@ input, button, textarea, a {
   border-radius: 2px;
   z-index: 3;
   background: #222;
+  transform: rotate(4deg);
 }
 
 #watch .hand.hour {
@@ -1387,3 +1478,109 @@ input, button, textarea, a {
   /* .loading-text {
     padding-top: 10%;
   } */
+
+
+  html {
+    scroll-behavior: smooth; /* Smooth scrolling */
+  }
+
+  .scroll-down {
+    color: black;
+    text-decoration: none;
+  }
+
+  .dark-mode .scroll-down {
+    color: white; /* Change to white for dark mode */
+    text-decoration: none;
+  }
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.flash-card::before, .flash-card::after {
+  position: absolute;
+  content: '';
+  height: 110%;
+  width: 110%;
+  top: -5%;
+  left: -5%;
+  border-radius: 10px;
+  background-image: conic-gradient(from var(--angle), red, green, blue, rgb(224, 5, 119), red);
+  animation: spin 3s linear infinite;
+  z-index: -1;      /* <-- This is key */
+  /* padding: 180px; <-- REMOVE this line */
+}
+
+.flash-card::before {
+  filter: blur(1.5rem);
+  opacity: 0.8;
+}
+
+@keyframes spin {
+  from {
+    --angle: 0deg;
+  }
+  to {
+    --angle: 360deg;
+  }
+}
+
+.music-dropdown {
+  position: absolute;
+  bottom: 45px;
+  left: 60%;         /* Move it closer to the Expand button */
+  width: 30%;        /* Make it narrower */
+  background: #181818;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  z-index: 10;
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.95rem; /* Slightly smaller text */
+  max-height: 140px;  /* Less tall */
+  overflow-y: auto;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  padding: 0;         /* Remove extra space */
+}
+.dropdown-song {
+  padding: 10px ;
+  cursor: pointer;
+  transition: background 0.2s;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.dropdown-song:hover {
+  background: #222;
+}
+.music-container {
+  position: relative; /* Ensure dropdown is positioned correctly */
+}
+
+
+.music-bar, .music-expanded {
+  overflow: visible !important; /* Ensure overflow is visible */
+}
+
+.music-name {
+  min-width: 100px;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.hero {
+  cursor: none;
+}
+
+.dark-mode .hero {
+  cursor: none; /* Ensure custom cursor is used in dark mode */
+}

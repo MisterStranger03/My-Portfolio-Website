@@ -55,9 +55,10 @@ document.addEventListener('mouseup', () => {
 const musicBar = document.getElementById('musicBar');
 const musicIcon = document.getElementById('musicIcon');
 const playPauseBtn = document.getElementById('playPauseBtn');
+const rewindBtn = document.getElementById('rewindBtn');
+const forwardBtn = document.getElementById('forwardBtn');
 const progress = document.getElementById('progress');
-
-let isPlaying = false;
+const audio = document.getElementById('audioPlayer');
 
 // Toggle expand/collapse
 musicIcon.addEventListener('click', () => {
@@ -69,37 +70,41 @@ musicBar.addEventListener('click', (e) => {
   e.stopPropagation();
 });
 
-// Play/Pause Button Logic
+// Play/Pause Button Logic (real audio)
 playPauseBtn.addEventListener('click', (e) => {
-  e.stopPropagation(); // Prevent triggering bar collapse
-  isPlaying = !isPlaying;
-  playPauseBtn.textContent = isPlaying ? '⏸️' : '▶️';
-
-  if (isPlaying) {
-    startProgress();
+  e.stopPropagation();
+  if (audio.paused) {
+    audio.play();
+    playPauseBtn.textContent = '⏸️';
   } else {
-    stopProgress();
+    audio.pause();
+    playPauseBtn.textContent = '▶️';
   }
 });
 
-// Simulate Progress Bar
-let progressInterval;
+// Rewind 10 seconds
+rewindBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  audio.currentTime = Math.max(0, audio.currentTime - 10);
+});
 
-function startProgress() {
-  clearInterval(progressInterval);
-  progressInterval = setInterval(() => {
-    let currentWidth = parseFloat(progress.style.width) || 0;
-    if (currentWidth < 100) {
-      progress.style.width = `${currentWidth + 1}%`;
-    } else {
-      clearInterval(progressInterval);
-    }
-  }, 1000); // Increment every second
-}
+// Forward 10 seconds
+forwardBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  audio.currentTime = Math.min(audio.duration, audio.currentTime + 10);
+});
 
-function stopProgress() {
-  clearInterval(progressInterval);
-}
+// Update progress bar with real audio
+audio.addEventListener('timeupdate', () => {
+  const percent = (audio.currentTime / audio.duration) * 100;
+  progress.style.width = percent + '%';
+});
+
+// Reset button and progress when audio ends
+audio.addEventListener('ended', () => {
+  playPauseBtn.textContent = '▶️';
+  progress.style.width = '0%';
+});
 
 // Skill Ball Hover Effect
 document.addEventListener("DOMContentLoaded", () => {
@@ -167,3 +172,48 @@ document.addEventListener("DOMContentLoaded", () => {
   setInterval(updateClock, 1000);
   updateClock();
 })();
+
+const musicLibrary = [
+  { name: "Finding Her", image: "assets/Finding Her.png", file: "assets/Finding Her.mp3" },
+  { name: "Ishq Hai", image: "assets/Ishq Hai.png", file: "assets/Ishq Hai.mp3" },
+  { name: "Raanjhan", image: "assets/Raanjhan.png", file: "assets/Raanjhan.mp3" },
+  { name: "Sahiba", image: "assets/Sahiba.png", file: "assets/Sahiba.mp3" }
+];
+
+const expandMusicBtn = document.getElementById('expandMusicBtn');
+const musicDropdown = document.getElementById('musicDropdown');
+const albumArt = document.querySelector('.album-art');
+const musicName = document.querySelector('.music-name');
+const audioPlayer = document.getElementById('audioPlayer');
+
+// Show/hide dropdown on expand button click
+expandMusicBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  if (musicDropdown.style.display === 'none' || musicDropdown.style.display === '') {
+    musicDropdown.innerHTML = musicLibrary.map((song, idx) =>
+      `<div class="dropdown-song" data-idx="${idx}">${song.name}</div>`
+    ).join('');
+    musicDropdown.style.display = 'block';
+  } else {
+    musicDropdown.style.display = 'none';
+  }
+});
+
+// Hide dropdown when clicking outside
+document.addEventListener('click', () => {
+  musicDropdown.style.display = 'none';
+});
+
+// Song selection logic
+musicDropdown.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const idx = e.target.getAttribute('data-idx');
+  if (idx !== null) {
+    const song = musicLibrary[idx];
+    albumArt.src = song.image;
+    musicName.textContent = song.name;
+    audioPlayer.src = song.file;
+    audioPlayer.currentTime = 0;
+    musicDropdown.style.display = 'none';
+  }
+});
