@@ -537,20 +537,41 @@
 .projects-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    gap: 10%;
     justify-items: center;
     padding-bottom: 100px;
 }
 
 .project-card {
-    background-color: white;
+    background-color: rgb(194, 193, 193);
     color: #333;
     width: 100%;
-    max-width: 350px;
+    max-width: 320px; /* Set a reasonable max-width for the card */
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 123, 255, 0.1); /* Subtle glow */
-    overflow: hidden;
+    box-shadow: 0 0 16px 0 rgba(0,0,0,0.18); /* Even shadow all around */
+    overflow: visible;
+    margin-bottom: 60px; /* Space for triangle */
+    position: relative;  /* Needed for ::after positioning */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -56px; /* Sits just below the card */
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 160px solid transparent;  /* Triangle width */
+    border-right: 160px solid transparent; /* Triangle width */
+    border-top: 60px solid rgb(194, 193, 193); /* Triangle height and color */
+    z-index: 2;
+    pointer-events: none;
+}
+
+.dark-mode .project-card::after {
+  border-top: 60px solid #333; /* Dark mode triangle color */
 }
 
 
@@ -1103,6 +1124,12 @@ input, button, textarea, a {
   border: 1.5px solid #000;
 }
 
+.dark-mode #watch .frame-face {
+  background: #333; /* Dark mode background */
+  box-shadow: 0 0 8px rgba(255,255,255,0.15); /* Lighter shadow for dark mode */
+  border: 1.5px solid #fff; /* White border for dark mode */
+}
+
 #watch .frame-face:after {
   content: "";
   width: 100%;
@@ -1115,6 +1142,11 @@ input, button, textarea, a {
   background: #fff;
   z-index: 2;
   /* border: 1.5px solid #000000; */
+}
+
+.dark-mode #watch .frame-face:after {
+  background: #444; /* Dark mode inner face */
+  box-shadow: inset rgba(255, 255, 255, 0.2) 2px; /* Lighter shadow for dark mode */
 }
 
 #watch .minute-marks {
@@ -1130,6 +1162,7 @@ input, button, textarea, a {
   transform: rotate(6deg) !important;
 }
 
+
 #watch .minute-marks li {
   display: block;
   width: 2px;
@@ -1143,9 +1176,17 @@ input, button, textarea, a {
   /* border-radius: 1px black; */
 }
 
+.dark-mode #watch .minute-marks li {
+  background: #555; /* Dark mode minute marks */
+}
+
 #watch .minute-marks li:nth-child(5n) {
   height: 8px;
-  background: #333;
+  background: #6a6a6a;
+}
+
+.dark-mode #watch .minute-marks li:nth-child(5n) {
+  background: #fff; /* Dark mode minute marks for every 5th mark */
 }
 
 #watch .hand {
@@ -1160,14 +1201,26 @@ input, button, textarea, a {
   transform: rotate(4deg);
 }
 
+.dark-mode #watch .hand {
+  background: #fff; /* Dark mode hands */
+}
+
 #watch .hand.hour {
   height: 18px;
   background: #222;
 }
 
+.dark-mode #watch .hand.hour {
+  background: #fff; /* Dark mode hour hand */
+}
+
 #watch .hand.minute {
   height: 24px;
   background: #444;
+}
+
+.dark-mode #watch .hand.minute {
+  background: #fff; /* Dark mode minute hand */
 }
 
 #watch .hand.second {
@@ -1579,13 +1632,16 @@ input, button, textarea, a {
 }
 
 .hero {
-  cursor: none;
+  cursor: none !important;
 }
 
 .dark-mode .hero {
-  cursor: none; /* Ensure custom cursor is used in dark mode */
+  cursor: none !important; /* Ensure custom cursor is used in dark mode */
 }
 
+.myprojects, .Education, .Skills {
+  margin-top: 2%;
+}
 
 @media (max-width: 768px) {
   .music-expanded {
@@ -1686,6 +1742,7 @@ input, button, textarea, a {
   padding-left: 40px;
 }
 
+
 .ball {
     position: absolute;
     width: 60px;
@@ -1722,7 +1779,7 @@ input, button, textarea, a {
 }
 
 .project-card {
-    background-color: white;
+    background-color: rgb(194, 193, 193);
     color: #333;
     width: 100%;
     max-width: 100%;
@@ -1749,13 +1806,17 @@ input, button, textarea, a {
     height: 0;
     border-left: 41px solid transparent;  /* Width of triangle */
     border-right: 41px solid transparent; /* Width of triangle */
-    border-top: 40px solid white;         /* Height and color of triangle */
+    border-top: 40px solid rgb(194, 193, 193);         /* Height and color of triangle */
     z-index: 2;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 123, 255, 0.1);  */
         /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 123, 255, 0.1);  */
     
+}
+
+.dark-mode .project-card::after {
+  border-top: 40px solid #333; /* Dark mode triangle color */
 }
 
 /* .project-card:hover::after {
