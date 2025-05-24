@@ -1041,6 +1041,7 @@ input, button, textarea, a {
 }
 
 
+
 /* Media Queries for Responsiveness */
         @media (max-width: 768px) {
             header h1 {
@@ -1583,4 +1584,197 @@ input, button, textarea, a {
 
 .dark-mode .hero {
   cursor: none; /* Ensure custom cursor is used in dark mode */
+}
+
+
+@media (max-width: 768px) {
+  .music-expanded {
+    width: 50%; /* Full width on smaller screens */
+    height: auto; /* Adjust height to content */
+    padding: 20px; /* Add padding for better spacing */
+  }
+  
+  .logo {
+    max-width: 80px; /* Smaller logo size on mobile */
+    max-height: 90px; /* Smaller logo height on mobile */
+    font-size: 1.2rem !important; /* Adjust font size for mobile */
+  }
+  
+  .hero .cta button {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    border-radius: 6px;
+  }
+
+  .flash-card {
+    width: 120px;
+    height: 100px;
+  }
+
+  .flash-card img {
+    width: 180px;
+    height: 120px;
+  }
+
+  .flash-card-overlay img{
+    font-size: 0.2rem; /* Smaller font size for mobile */
+    width: 50px;
+    height: 50px;
+  }
+
+  #iiitklogo {
+    width: 40px;
+  }
+
+  .flash-card.expanded {
+    width: 300px;
+  }
+
+  .flash-card.expanded img {
+    position: relative;
+    width: 100px; /* Keep image size fixed */
+    height: 100px; /* Keep height fixed */
+    object-fit: cover;
+    flex-shrink: 0; /* Prevent shrinking of the image */
+}
+
+.flash-card.expanded .flash-card-overlay {
+    display: none; /* Hide the overlay after clicking */
+}
+
+.flash-card-details {
+    display: none;
+    flex-grow: 1; /* Fill the remaining expanded space */
+    /* padding: 1rem; */
+    background-color: white;
+    color: #333;
+    /* height: 100%;  */
+    box-sizing: border-box;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: auto;
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack title and details vertically */
+}
+
+.flash-card.expanded .flash-card-details {
+    display: flex; /* Display details when expanded */
+}
+
+.flash-card-details h3 {
+    margin: 0;
+    /* padding: 0.5rem 1rem; */
+    text-align: center; /* Align institution name to the left */
+    font-size: 10px;
+    font-weight: bold;
+    padding: 0;
+    margin-bottom: 2px;
+}
+
+.flash-card-details .details-body {
+    flex-grow: 1; /* Use remaining space */
+    display: flex; /* Use flexbox for layout */
+    /* align-items: flex-start; Center text vertically */
+    /* justify-content: flex-start; Center text horizontally */
+    text-align: center !important; /* Align text within the content box */
+    font-size: 8px;
+    line-height: 1.5;
+    justify-content: center;
+    align-items: center; /* Center text vertically */
+}
+.sajsdetails {
+  padding-left: 40px;
+}
+
+.ball {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle at 30% 30%, #d3d3d3, #a9a9a9); /* Greyish gradient background */
+    color: #000;
+    font-size: 10.5px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6), inset 0 -1px 2px rgba(0, 0, 0, 0.5); /* Strong black shadow effect */
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.8s ease, box-shadow 0.3s ease, background 0.3s ease; /* Smooth transitions */
+    cursor: pointer;
+}
+
+.ball:hover {
+    background: radial-gradient(circle at 30% 30%, #b3b3b3, #7f7f7f); /* Darker grey gradient on hover */
+    box-shadow: 0 7.5px 15px rgba(0, 0, 0, 0.8), inset 0 -4px 6px rgba(0, 0, 0, 0.6); /* Stronger black shadow on hover */
+}
+
+.dark-mode .ball {
+  font-size: 10.5px;
+}
+
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 10px;
+    justify-items: center;
+    padding-bottom: 100px;
+}
+
+.project-card {
+    background-color: white;
+    color: #333;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 123, 255, 0.1); /* Subtle glow */
+    overflow: visible;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    margin-bottom: 30px;
+    min-height: 140px;
+}
+
+.project-card:hover {
+  transform: scale(1.05);
+}
+
+.project-card::after {
+  content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -39px; /* Adjust so the triangle sits just below the card */
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 41px solid transparent;  /* Width of triangle */
+    border-right: 41px solid transparent; /* Width of triangle */
+    border-top: 40px solid white;         /* Height and color of triangle */
+    z-index: 2;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 123, 255, 0.1);  */
+        /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 123, 255, 0.1);  */
+    
+}
+
+/* .project-card:hover::after {
+  transform: scale(1.05);
+} */
+.project-card img {
+    width: 100%;
+    height: 50px;
+    object-fit: cover;
+}
+
+.project-card h3 {
+    padding: 5px;
+    font-size: 11px;
+    /* padding-right: 10px; */
+    padding-left: 0 !important;
+    padding-left: 7px;
+    padding-right: 4px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
 }
