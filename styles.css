@@ -494,7 +494,9 @@
 
 .expand-music {
   margin-left: 12% ;
-  font-size: 8px;
+  font-size: 10px;
+  padding-left: 6px;
+  padding-right: 6px;
 }
 
 
@@ -1059,6 +1061,14 @@ input, button, textarea, a {
 .custom-cursor.click {
     transform: translate(-50%, -50%) scale(1.5);
     background-color: rgba(255, 165, 0, 0.7);
+}
+
+.mobilenav {
+    display: none; /* Hide the mobile navigation by default */
+}
+
+.side-panel {
+  display: none;;
 }
 
 
@@ -1937,7 +1947,7 @@ input, button, textarea, a {
 }
 
 .expand-music {
-  margin-left: 8% ;
+  margin-left: 6% ;
   font-size: 10px;
   padding-right: 4px;
   padding-left:4px;
@@ -1993,5 +2003,166 @@ input, button, textarea, a {
   display: inline-block;
 }
 
+#watch {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  margin: 0 8px 0 0;  /* Only right margin for spacing from toggle button */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 10%;
+  /* border: 1px black; */
+  /* transform: rotate(5deg); */
+  
+}
+
+
+.logo {
+  margin-left: -25px;
+}
+
+.mobilenav {
+  display: flex;
+}
+
+.navbtn {
+  background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+  border: none;
+  color: #000000;
+  font-size: 1.5rem; /* Slightly reduced font-size */
+  padding: 0.3rem 0.8rem; /* Reduced vertical padding to lower the button height */
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 5px rgba(49, 51, 53, 0.5); /* Initial subtle glow */
+}
+
+.dark-mode .navbtn {
+  background: rgba(0, 0, 0, 0.2); /* Semi-transparent background for dark mode */
+  color: #ffffff; /* Change text color to white for dark mode */
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Initial subtle glow for dark mode */
+}
+
+.navbtn:hover {
+  background: rgba(0, 123, 255, 0.1);
+  color: #000000;
+  text-shadow: 0 0 12px rgba(60, 62, 65, 0.7);
+  box-shadow: 0 0 20px rgb(45, 45, 46); /* Enhanced glow on hover */
+}
+
+.dark-mode .navbtn:hover {
+  background: rgba(0, 123, 255, 0.1);
+  color: #ffffff; /* Change text color to white on hover for dark mode */
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.7); /* Enhanced glow on hover for dark mode */
+  box-shadow: 0 0 20px rgb(120, 120, 122); /* Enhanced glow on hover */
+}
+
+.side-panel {
+  position: fixed;
+  top: 0.5vh;
+  left: -260px;
+  width: 150px;
+  height: 99.5vh;
+  background: #fff;
+  box-shadow: 2px 0 16px rgba(0,0,0,0.18);
+  z-index: 2000;
+  transition: left 0.3s cubic-bezier(.77,0,.18,1);
+  display: flex;
+  flex-direction: column;
+  padding-top: 100px;
+  border-radius: 10px;
+  /* opacity: 0.8; */
+  background: rgba( 255, 255, 255, 0.4 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 3.5px );
+-webkit-backdrop-filter: blur( 3.5px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+
 
 }
+
+.dark-mode .side-panel {
+  background: rgba( 0, 0, 0, 0.8 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 3.5px );
+  -webkit-backdrop-filter: blur( 3.5px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  color: #fff;
+}
+
+.side-panel.open {
+  left: 0;
+}
+
+.side-panel .close-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #333;
+  cursor: pointer;
+   transition: color 0.2s, text-shadow 0.2s;
+  /* Initial subtle glow */
+  text-shadow: 0 0 12px rgba(65, 68, 70, 0.7);
+}
+
+.side-panel .close-btn:hover {
+  /* Enhanced glow on hover */
+  text-shadow: 0 0 14px rgba(0, 123, 255, 1);
+}
+
+.dark-mode .side-panel .close-btn {
+  color: #fff; /* Change to white for dark mode */
+  text-shadow: 0 0 12px whitesmoke;
+}
+
+.side-panel ul {
+  list-style: none;
+  padding: 0 0 0 18px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.side-panel ul li a {
+  text-decoration: none;
+  color: #222;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: color 0.2s, text-shadow 0.2s;
+  /* Initial subtle glow */
+  text-shadow: 0 0 12px rgba(29, 30, 30, 0.7);
+}
+
+.dark-mode .side-panel ul li a {
+  text-shadow: 0 0 12px whitesmoke;
+}
+
+.dark-mode .side-panel ul li a:hover {
+  /* Enhanced glow on hover */
+  text-shadow: 0 0 18px rgba(0, 123, 255, 1);
+}
+.side-panel ul li a:hover {
+  /* Enhanced glow on hover */
+  text-shadow: 0 0 14px rgba(0, 123, 255, 1);
+}
+
+.dark-mode .side-panel ul li a {
+  color: #fff; /* Change to white for dark mode */
+}
+
+/* .side-panel ul li a:hover {
+  color: #007bff;
+} */
+
+
+
+
+}
+

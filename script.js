@@ -217,3 +217,29 @@ musicDropdown.addEventListener('click', (e) => {
     musicDropdown.style.display = 'none';
   }
 });
+
+function openSidePanel() {
+  document.getElementById('side-panel').classList.add('open');
+}
+function closeSidePanel() {
+  document.getElementById('side-panel').classList.remove('open');
+}
+// Optional: Close panel when clicking outside
+document.addEventListener('click', function(e) {
+  const panel = document.getElementById('side-panel');
+  if (
+    panel.classList.contains('open') &&
+    !panel.contains(e.target) &&
+    !e.target.classList.contains('navbtn')
+  ) {
+    closeSidePanel();
+  }
+});
+
+// Get all anchor elements inside the side panel
+const sidePanelLinks = document.querySelectorAll('.side-panel ul li a');
+sidePanelLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    closeSidePanel(); // Automatically close the side panel when link is clicked
+  });
+});

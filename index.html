@@ -41,6 +41,9 @@
 </div>
       </div>
     <nav>
+        <div class="mobilenav">
+            <button class="navbtn" onclick="openSidePanel()">☰</button>
+        </div>
         <div class="logo">Raman's Portfolio</div>
         <div class="nav-right">
             <ul>
@@ -65,6 +68,18 @@
             <button class="toggle-button" onclick="toggleMode()">🌙</button>
         
     </nav>
+
+    <!-- Side Panel Navigation (outside nav for stacking) -->
+    <div id="side-panel" class="side-panel">
+  <button class="close-btn" onclick="closeSidePanel()">&times;</button>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</div>
 
     <div class="hero">
         <img src="assets/myavatar (1).png" alt="Hero Image">
