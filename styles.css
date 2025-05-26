@@ -1851,10 +1851,10 @@ input, button, textarea, a {
     transform: translateX(-50%);
     width: 0;
     height: 0;
-    border-left: 41px solid transparent;  /* Width of triangle */
-    border-right: 41px solid transparent; /* Width of triangle */
+    border-left: 48px solid transparent;  /* Width of triangle */
+    border-right: 48px solid transparent; /* Width of triangle */
     border-top: 40px solid rgb(194, 193, 193);         /* Height and color of triangle */
-    z-index: 2;
+    z-index: 0;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 123, 255, 0.1);  */
@@ -1921,6 +1921,7 @@ input, button, textarea, a {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2), 0 0 20px rgba(255, 0, 255, 0.7);
     border-radius: 20px;
     height: 55px;
+    z-index: 10000 !important; /* Ensure it appears above other content */
 }
 
 .hero .music-bar:not(.collapsed) .music-expanded {
@@ -2215,3 +2216,532 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
 
 }
 
+
+
+
+@media (max-width: 360px) {
+  .music-expanded {
+    width: 50%; /* Full width on smaller screens */
+    height: auto; /* Adjust height to content */
+    padding: 20px; /* Add padding for better spacing */
+  }
+  
+  .logo {
+    max-width: 80px; /* Smaller logo size on mobile */
+    max-height: 90px; /* Smaller logo height on mobile */
+    font-size: 1.2rem !important; /* Adjust font size for mobile */
+  }
+  
+  .hero .cta button {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    border-radius: 6px;
+  }
+
+  .flash-card {
+    width: 120px;
+    height: 100px;
+  }
+
+  .flash-card img {
+    width: 180px;
+    height: 120px;
+  }
+
+  .flash-card-overlay img{
+    font-size: 0.2rem; /* Smaller font size for mobile */
+    width: 50px;
+    height: 50px;
+    margin-left: 4px;
+  }
+
+  #iiitklogo {
+    width: 40px;
+  }
+
+  .flash-card.expanded {
+    width: 300px;
+  }
+
+  .flash-card.expanded img {
+    position: relative;
+    width: 100px; /* Keep image size fixed */
+    height: 100px; /* Keep height fixed */
+    object-fit: cover;
+    flex-shrink: 0; /* Prevent shrinking of the image */
+}
+
+.flash-card.expanded .flash-card-overlay {
+    display: none; /* Hide the overlay after clicking */
+}
+
+.flash-card-details {
+    display: none;
+    flex-grow: 1; /* Fill the remaining expanded space */
+    /* padding: 1rem; */
+    background-color: white;
+    color: #333;
+    /* height: 100%;  */
+    box-sizing: border-box;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: auto;
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack title and details vertically */
+}
+
+.flash-card.expanded .flash-card-details {
+    display: flex; /* Display details when expanded */
+}
+
+.flash-card-details h3 {
+    margin: 0;
+    /* padding: 0.5rem 1rem; */
+    text-align: center; /* Align institution name to the left */
+    font-size: 10px;
+    font-weight: bold;
+    padding: 0;
+    margin-bottom: 2px;
+}
+
+.flash-card-details .details-body {
+    flex-grow: 1; /* Use remaining space */
+    display: flex; /* Use flexbox for layout */
+    /* align-items: flex-start; Center text vertically */
+    /* justify-content: flex-start; Center text horizontally */
+    text-align: center !important; /* Align text within the content box */
+    font-size: 8px;
+    line-height: 1.5;
+    justify-content: center;
+    align-items: center; /* Center text vertically */
+}
+.sajsdetails {
+  padding-left: 40px;
+}
+
+
+.ball {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle at 30% 30%, #d3d3d3, #a9a9a9); /* Greyish gradient background */
+    color: #000;
+    font-size: 10.5px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6), inset 0 -1px 2px rgba(0, 0, 0, 0.5); /* Strong black shadow effect */
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.8s ease, box-shadow 0.3s ease, background 0.3s ease; /* Smooth transitions */
+    cursor: pointer;
+}
+
+.ball:hover {
+    background: radial-gradient(circle at 30% 30%, #b3b3b3, #7f7f7f); /* Darker grey gradient on hover */
+    box-shadow: 0 7.5px 15px rgba(0, 0, 0, 0.8), inset 0 -4px 6px rgba(0, 0, 0, 0.6); /* Stronger black shadow on hover */
+}
+
+.dark-mode .ball {
+  font-size: 10.5px;
+}
+
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 10px;
+    justify-items: center;
+    padding-bottom: 100px;
+}
+
+.project-card {
+    background-color: rgb(194, 193, 193);
+    color: #333;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 123, 255, 0.1); /* Subtle glow */
+    overflow: visible;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    margin-bottom: 30px;
+    min-height: 140px;
+}
+
+.project-card:hover {
+  transform: scale(1.05);
+}
+
+.project-card::after {
+  content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -39px; /* Adjust so the triangle sits just below the card */
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 41px solid transparent;  /* Width of triangle */
+    border-right: 41px solid transparent; /* Width of triangle */
+    border-top: 40px solid rgb(194, 193, 193);         /* Height and color of triangle */
+    z-index: 0;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 123, 255, 0.1);  */
+        /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 123, 255, 0.1);  */
+    
+}
+
+.dark-mode .project-card::after {
+  border-top: 40px solid #333; /* Dark mode triangle color */
+}
+
+/* .project-card:hover::after {
+  transform: scale(1.05);
+} */
+.project-card img {
+    width: 100%;
+    height: 50px;
+    object-fit: cover;
+}
+
+.project-card h3 {
+    padding: 5px;
+    font-size: 11px;
+    /* padding-right: 10px; */
+    padding-left: 0 !important;
+    padding-left: 7px;
+    padding-right: 4px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.hero .music-icon {
+    position: fixed; /* Change from absolute to fixed */
+    right: 20px; /* Positioned on the right */
+    bottom: 20px; /* Positioned at the bottom */
+    height: 60px;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    background: linear-gradient(135deg, #aeaeae, #ffffff);
+    border-radius: 50%;
+    color: rgb(255, 255, 255);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2), 0 0 20px rgba(255, 105, 180, 0.8); /* Glow effect */
+    z-index: 1001;
+    cursor: pointer;
+}
+
+
+.hero .music-bar:not(.collapsed) {
+    width: 280px;
+}
+
+/* Expanded music controls */
+.hero .music-expanded {
+  position: relative;
+    display: flex;
+    align-items: center;
+    width: 95%;
+    padding: 0 2px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2), 0 0 20px rgba(255, 0, 255, 0.7);
+    border-radius: 20px;
+    height: 55px;
+    z-index: 10000 !important; /* Ensure it appears above other content */
+}
+
+.hero .music-bar:not(.collapsed) .music-expanded {
+    opacity: 1;
+}
+
+.hero .album-art {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    margin-right: 5px;
+    margin-left: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+/* Music logo */
+.hero .controls {
+    display: flex;
+    justify-content: center; /* Center the buttons */
+    align-items: center;
+    /* flex: 1; */
+    margin-left: 4%;
+    gap: 5px; /* Adjusted spacing between buttons */
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+
+/* Control buttons */
+.hero .control-btn {
+    background: none;
+    border: none;
+    font-size: 15px;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.hero .control-btn:hover {
+    transform: scale(1.2);
+}
+
+.hero .progress-bar {
+    position: absolute;
+    bottom: 5px;
+    left: 100px;
+    /* right: 200px; */
+    width: 30%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.hero .progress {
+    width: 0%; /* Dynamic value */
+    height: 100%;
+    background: rgb(0, 0, 0);
+    transition: width 0.3s ease;
+}
+
+.expand-music {
+  margin-left: 6% ;
+  font-size: 10px;
+  padding-right: 4px;
+  padding-left:4px;
+}
+
+.music-dropdown {
+  position: absolute;
+  bottom: 45px;
+  left: 60%;         /* Move it closer to the Expand button */
+  width: 30%;        /* Make it narrower */
+  background: #181818;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  z-index: 10;
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.65rem; /* Slightly smaller text */
+  max-height: 140px;  /* Less tall */
+  overflow-y: auto;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  padding: 0;         /* Remove extra space */
+}
+.dropdown-song {
+  padding: 5px ;
+  cursor: pointer;
+  transition: background 0.2s;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.dropdown-song:hover {
+  background: #222;
+}
+.music-container {
+  position: relative; /* Ensure dropdown is positioned correctly */
+}
+
+
+.music-bar, .music-expanded {
+  overflow: visible !important; /* Ensure overflow is visible */
+}
+
+.music-name {
+  min-width: 50px;
+  max-width: 80px;
+  font-size: 11px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+#watch {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  margin: 0 8px 0 0;  /* Only right margin for spacing from toggle button */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 10%;
+  /* border: 1px black; */
+  /* transform: rotate(5deg); */
+  
+}
+
+
+.logo {
+  margin-left: -25px;
+}
+
+.mobilenav {
+  display: flex;
+}
+
+.navbtn {
+  background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+  border: none;
+  color: #000000;
+  font-size: 1.5rem; /* Slightly reduced font-size */
+  padding: 0.3rem 0.8rem; /* Reduced vertical padding to lower the button height */
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 5px rgba(49, 51, 53, 0.5); /* Initial subtle glow */
+}
+
+.dark-mode .navbtn {
+  background: rgba(0, 0, 0, 0.2); /* Semi-transparent background for dark mode */
+  color: #ffffff; /* Change text color to white for dark mode */
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Initial subtle glow for dark mode */
+}
+
+.navbtn:hover {
+  background: rgba(0, 123, 255, 0.1);
+  color: #000000;
+  text-shadow: 0 0 12px rgba(60, 62, 65, 0.7);
+  box-shadow: 0 0 20px rgb(45, 45, 46); /* Enhanced glow on hover */
+}
+
+.dark-mode .navbtn:hover {
+  background: rgba(0, 123, 255, 0.1);
+  color: #ffffff; /* Change text color to white on hover for dark mode */
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.7); /* Enhanced glow on hover for dark mode */
+  box-shadow: 0 0 20px rgb(120, 120, 122); /* Enhanced glow on hover */
+}
+
+.side-panel {
+  position: fixed;
+  top: 0.5vh;
+  left: -260px;
+  width: 150px;
+  height: 99.5vh;
+  background: #fff;
+  box-shadow: 2px 0 16px rgba(0,0,0,0.18);
+  z-index: 2000;
+  transition: left 0.3s cubic-bezier(.77,0,.18,1);
+  display: flex;
+  flex-direction: column;
+  padding-top: 100px;
+  border-radius: 10px;
+  /* opacity: 0.8; */
+  background: rgba( 255, 255, 255, 0.4 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 3.5px );
+-webkit-backdrop-filter: blur( 3.5px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+
+
+}
+
+.dark-mode .side-panel {
+  background: rgba( 0, 0, 0, 0.8 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 3.5px );
+  -webkit-backdrop-filter: blur( 3.5px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  color: #fff;
+}
+
+.side-panel.open {
+  left: 0;
+}
+
+.side-panel .close-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #333;
+  cursor: pointer;
+   transition: color 0.2s, text-shadow 0.2s;
+  /* Initial subtle glow */
+  text-shadow: 0 0 12px rgba(65, 68, 70, 0.7);
+}
+
+.side-panel .close-btn:hover {
+  /* Enhanced glow on hover */
+  text-shadow: 0 0 14px rgba(0, 123, 255, 1);
+}
+
+.dark-mode .side-panel .close-btn {
+  color: #fff; /* Change to white for dark mode */
+  text-shadow: 0 0 12px whitesmoke;
+}
+
+.side-panel ul {
+  list-style: none;
+  padding: 0 0 0 18px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.side-panel ul li a {
+  text-decoration: none;
+  color: #222;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: color 0.2s, text-shadow 0.2s;
+  /* Initial subtle glow */
+  text-shadow: 0 0 12px rgba(29, 30, 30, 0.7);
+}
+
+.dark-mode .side-panel ul li a {
+  text-shadow: 0 0 12px whitesmoke;
+}
+
+.dark-mode .side-panel ul li a:hover {
+  /* Enhanced glow on hover */
+  text-shadow: 0 0 18px rgba(0, 123, 255, 1);
+}
+.side-panel ul li a:hover {
+  /* Enhanced glow on hover */
+  text-shadow: 0 0 14px rgba(0, 123, 255, 1);
+}
+
+.dark-mode .side-panel ul li a {
+  color: #fff; /* Change to white for dark mode */
+}
+
+/* Active highlight for side panel links */
+.side-panel ul li a.active {
+  color: #36383a; /* Highlight color */
+  text-shadow: 0 0 28px rgba(0, 123, 255, 1);
+  font-weight: bold;
+  transform: scale(0.95rem);
+}
+
+.dark-mode .side-panel ul li a.active {
+  color: #9b9494; /* Highlight color for dark mode */
+  transform: scale(0.9);
+}
+/* .side-panel ul li a:hover {
+  color: #007bff;
+} */
+
+
+
+
+}
