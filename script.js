@@ -243,3 +243,76 @@ sidePanelLinks.forEach(link => {
     closeSidePanel(); // Automatically close the side panel when link is clicked
   });
 });
+
+
+// Navbar Active Link Highlighting using IntersectionObserver
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Get all sections that correspond to nav entries.
+  const sections = document.querySelectorAll("section[id]");
+  
+  // Get all nav links from main nav and side panel.
+  const mainNavLinks = document.querySelectorAll("nav ul li a");
+  const sideNavLinks = document.querySelectorAll(".side-panel ul li a");
+  
+  // Home links are assumed to have href="#"
+  const homeLinkMain = document.querySelector('nav ul li a[href="#"]');
+  const homeLinkSide = document.querySelector('.side-panel ul li a[href="#"]');
+  
+  // Adjust for your fixed header height (80px in your CSS)
+  const observerOptions = {
+    root: null,       
+    threshold: 0.5,   
+    rootMargin: "-80px 0px 0px 0px"
+  };
+
+  const observerCallback = (entries) => {
+    // Clear active state from both navs.
+    mainNavLinks.forEach(link => link.classList.remove("active"));
+    sideNavLinks.forEach(link => link.classList.remove("active"));
+
+    let found = false;
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // If a section is intersecting, highlight its corresponding links
+        const sectionId = entry.target.getAttribute("id");
+        const activeMain = document.querySelector(`nav ul li a[href="#${sectionId}"]`);
+        const activeSide = document.querySelector(`.side-panel ul li a[href="#${sectionId}"]`);
+        if (activeMain) {
+          activeMain.classList.add("active");
+          found = true;
+        }
+        if (activeSide) {
+          activeSide.classList.add("active");
+        }
+      }
+    });
+    
+    // If no section is sufficiently visible or the user is at the top, highlight Home.
+    if (!found || window.pageYOffset < 100) {
+      if (homeLinkMain) {
+        homeLinkMain.classList.add("active");
+      }
+      if (homeLinkSide) {
+        homeLinkSide.classList.add("active");
+      }
+    }
+  };
+
+  const observer = new IntersectionObserver(observerCallback, observerOptions);
+  sections.forEach(section => observer.observe(section));
+
+  // Also update on scroll if near the very top of the page.
+  window.addEventListener("scroll", () => {
+    if (window.pageYOffset < 100) {
+      mainNavLinks.forEach(link => link.classList.remove("active"));
+      sideNavLinks.forEach(link => link.classList.remove("active"));
+      if (homeLinkMain) {
+        homeLinkMain.classList.add("active");
+      }
+      if (homeLinkSide) {
+        homeLinkSide.classList.add("active");
+      }
+    }
+  });
+});

@@ -81,6 +81,13 @@
             position: fixed;
             width: 100%;
             z-index: 10;
+
+            background: rgba( 255, 255, 255, 0.1 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 14px );
+-webkit-backdrop-filter: blur( 14px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
         }
 
         .nav-right {
@@ -118,12 +125,41 @@
             text-decoration: none;
             color: inherit;
             font-weight: 500;
-            transition: color 0.3s;
-        }
+            transition: text-shadow 0.3s ease, color 0.3s ease;
+  /* Initial subtle glow */
+  text-shadow: 0 0 18px rgba(36, 37, 37, 0.6);
+}
+
+.dark-mode nav ul li a {
+           text-decoration: none;
+           color: inherit;
+           font-weight: 500;
+           transition: text-shadow 0.3s ease, color 0.3s ease;
+           text-shadow: 0 0 18px whitesmoke;
+}
 
         nav ul li a:hover {
-            color: #007bff;
+           text-shadow: 0 0 24px rgb(6, 6, 6);
+  color: #007bff;
+}
+
+
+.dark-mode nav ul li a:hover {
+           text-shadow: 0 0 24px rgb(255, 255, 255);
+           color: #007bff;
         }
+
+        nav ul li a.active {
+  color: #36383a; /* Highlight color */
+  text-shadow: 0 0 28px rgba(0, 123, 255, 1);
+  font-weight: bold;
+  transform: scale(0.95rem);
+}
+
+.dark-mode nav ul li a.active {
+  transform: scale(0.9);
+  color: #9b9494; /* Highlight color for dark mode */
+}
 
         .toggle-button {
             padding: 8px 12px;
@@ -1686,6 +1722,7 @@ input, button, textarea, a {
     font-size: 0.2rem; /* Smaller font size for mobile */
     width: 50px;
     height: 50px;
+    margin-left: 4px;
   }
 
   #iiitklogo {
@@ -2157,6 +2194,18 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
   color: #fff; /* Change to white for dark mode */
 }
 
+/* Active highlight for side panel links */
+.side-panel ul li a.active {
+  color: #36383a; /* Highlight color */
+  text-shadow: 0 0 28px rgba(0, 123, 255, 1);
+  font-weight: bold;
+  transform: scale(0.95rem);
+}
+
+.dark-mode .side-panel ul li a.active {
+  color: #9b9494; /* Highlight color for dark mode */
+  transform: scale(0.9);
+}
 /* .side-panel ul li a:hover {
   color: #007bff;
 } */
