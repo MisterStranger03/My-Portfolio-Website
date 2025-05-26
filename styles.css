@@ -114,7 +114,7 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
         nav ul {
             display: flex;
             list-style: none;
-            margin-right: 8px;   /* Reduced from 32px to 8px */
+            margin-right: 40px;   /* Reduced from 32px to 8px */
         }
 
         nav ul li {
@@ -604,7 +604,7 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
     border-left: 160px solid transparent;  /* Triangle width */
     border-right: 160px solid transparent; /* Triangle width */
     border-top: 60px solid rgb(194, 193, 193); /* Triangle height and color */
-    z-index: 2;
+    z-index: 0;
     pointer-events: none;
 }
 
@@ -614,19 +614,66 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
 
 
 .project-card img {
+  /* left: 0; */
     width: 100%;
     height: 200px;
-    object-fit: cover;
+    object-fit: fill;
+    border-radius: 10px 10px 0 0; /* Rounded corners for the top */
 }
+
+
 
 .project-card h3 {
     padding: 15px;
     font-size: 1.5rem;
 }
 
+.project-card h3 .projectdetails {
+    font-size: 16px;
+    color: #666;
+    margin-top: 5px;
+    font-weight: 400;
+}
+
+.dark-mode h3 .projectdetails {
+  color: #ccc;
+}
+
+.project-card h3 a {
+  font-size: 15px;
+}
+
+
+.project-card h3 a img {
+    margin-top: 10px;
+    width: 50px; /* Adjust size as needed */
+    height: 50px; /* Adjust size as needed */
+    vertical-align: middle; /* Align with text */
+    margin-right: 10px; /* Space between logo and text */
+}
+
+.project-card .gitdark {
+  display: none;
+}
+
+.dark-mode .project-card .gitdark {
+  display: inline-block;
+}
+
+.dark-mode .gitlight {
+  display: none;
+}
+
+
+
+.project-card h3 a img:hover {
+    transform: scale(1.1); /* Slight zoom effect on hover */
+    transition: transform 0.3s ease; /* Smooth transition */
+}
+
 /* Hover effect with stronger glow */
 .project-card:hover {
-    transform: scale(1.25);
+    transform: scale(1.05);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 123, 255, 0.4); /* Enhanced glow on hover */
 }
 
@@ -1286,6 +1333,8 @@ input, button, textarea, a {
   z-index: 4;
 }
 
+
+
 @media (max-width: 900px) {
     #watch {
         width: 32px;
@@ -1687,6 +1736,133 @@ input, button, textarea, a {
 
 .myprojects, .Education, .Skills {
   margin-top: 2%;
+}
+
+/* Work Experience Section */
+.experience-section {
+  padding: 80px 20px;
+  background: white;
+  text-align: center;
+}
+
+.dark-mode .experience-section {
+  background: #121212;
+}
+
+.experience-section h2 {
+  font-size: 2.5rem;
+    margin-bottom: 80px;
+    text-align: center; /* Optional for better alignment */
+    color: #000000; /* White text color */
+}
+
+
+.dark-mode .experience-section h2 {
+   font-size: 2.5rem;
+    margin-bottom: 80px;
+    text-align: center; /* Optional for better alignment */
+    color: #fff; /* White text color */
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ffffff, 0 0 20px #ff9800, 0 0 25px #ff9800, 0 0 30px #ff9800;
+    animation: glow 1.5s infinite alternate;
+}
+
+.experience-container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.experience-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 0 10px rgba(0,123,255,0.07);
+  padding: 32px 28px 24px 28px;
+  width: 100%;
+  max-width: 600px;
+  text-align: left;
+  position: relative;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.experience-card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 0 24px rgba(0,123,255,0.18);
+  transform: translateY(-4px) scale(1.02);
+}
+.dark-mode .experience-card:hover {
+  box-shadow: 0 8px 32px rgba(0,123,255,0.18), 0 0 24px #a259ff;
+  transform: translateY(-4px) scale(1.02);
+}
+
+.dark-mode .experience-card {
+  background: #23233a;
+  color: #fff;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18), 0 0 10px #007bff;
+}
+
+.exp-header {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #007bff;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.dark-mode .exp-header {
+  color: #ffd700;
+}
+
+.exp-role {
+  font-weight: bold;
+}
+
+.exp-company {
+  font-style: italic;
+  color: #555;
+}
+
+.dark-mode .exp-company {
+  color: #b3b3b3;
+}
+
+.exp-duration {
+  font-size: 0.98rem;
+  color: #888;
+  margin-bottom: 12px;
+}
+
+.dark-mode .exp-duration {
+  color: #b3b3b3;
+}
+
+.exp-details {
+  margin: 0;
+  padding-left: 18px;
+  color: #333;
+  font-size: 1rem;
+}
+
+.dark-mode .exp-details {
+  color: #e0e0e0;
+}
+
+.exp-details li {
+  margin-bottom: 7px;
+  line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .experience-card {
+    padding: 18px 8px 14px 8px;
+  }
+  /* .experience-section h2 {
+    font-size: 1.3rem;
+  } */
 }
 
 @media (max-width: 768px) {
@@ -2212,6 +2388,77 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
 } */
 
 
+   .projects-container {
+  gap:180px;
+  /* display: grid;
+  grid-template-rows: auto; */
+}
+
+
+.project-card h3 .projectdetails {
+  font-size: 12px;
+  font-weight: 600;
+  padding-left: 12px;
+  padding-right: 12px;
+
+}
+
+.project-card h3 {
+  font-size: 20px;
+}
+
+
+.project-card h3 a img {
+  width: 48px;
+  height: 48px;
+  margin-right: 5px; /* Adjust spacing for smaller icons */
+  vertical-align: middle; /* Align with text */
+}
+
+.project-card {
+    background-color: rgb(194, 193, 193);
+    color: #333;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 123, 255, 0.1); /* Subtle glow */
+    overflow: visible;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    margin-bottom: 10px;
+    min-height: 140px;
+}
+
+.project-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: fill;
+}
+
+.project-card:hover {
+  transform: scale(1.05);
+}
+
+.project-card::after {
+  content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -39px; /* Adjust so the triangle sits just below the card */
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 156px solid transparent;  /* Width of triangle */
+    border-right: 156px solid transparent; /* Width of triangle */
+    border-top: 40px solid rgb(194, 193, 193);         /* Height and color of triangle */
+    z-index: 0;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 123, 255, 0.1);  */
+        /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 123, 255, 0.1);  */
+    
+}
+
+
 
 
 }
@@ -2225,6 +2472,8 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
     height: auto; /* Adjust height to content */
     padding: 20px; /* Add padding for better spacing */
   }
+
+ 
   
   .logo {
     max-width: 80px; /* Smaller logo size on mobile */
@@ -2742,6 +2991,72 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
 } */
 
 
-
-
+ .projects-container {
+  gap:140px;
+  /* display: grid;
+  grid-template-rows: auto; */
 }
+
+
+.project-card h3 .projectdetails {
+  font-size: 12px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.project-card h3 {
+  font-size: 19px;
+}
+
+
+.project-card h3 a img {
+  width: 38px;
+  height: 38px;
+  margin-right: 5px; /* Adjust spacing for smaller icons */
+  vertical-align: middle; /* Align with text */
+}
+
+.project-card {
+    background-color: rgb(194, 193, 193);
+    color: #333;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 123, 255, 0.1); /* Subtle glow */
+    overflow: visible;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    margin-bottom: 10px;
+    min-height: 140px;
+}
+
+.project-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: fill;
+}
+
+.project-card:hover {
+  transform: scale(1.05);
+}
+
+.project-card::after {
+  content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -39px; /* Adjust so the triangle sits just below the card */
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 140px solid transparent;  /* Width of triangle */
+    border-right: 140px solid transparent; /* Width of triangle */
+    border-top: 40px solid rgb(194, 193, 193);         /* Height and color of triangle */
+    z-index: 0;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 123, 255, 0.1);  */
+        /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 123, 255, 0.1);  */
+    
+}
+}
+
