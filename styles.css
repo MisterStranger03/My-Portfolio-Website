@@ -2458,7 +2458,9 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
     
 }
 
-
+.custom-cursor {
+  display: none;
+}
 
 
 }
@@ -2467,6 +2469,10 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
 
 
 @media (max-width: 360px) {
+
+  .custom-cursor {
+    display: none;
+  }
   .music-expanded {
     width: 50%; /* Full width on smaller screens */
     height: auto; /* Adjust height to content */
