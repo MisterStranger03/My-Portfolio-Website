@@ -1,0 +1,21 @@
+{
+  "name": "Raman's Portfolio",
+  "short_name": "Raman's App",
+  "description": "The Developer Portfolio of Raman, showcasing skills, projects, and contact information.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#bb86fc",
+  "icons": [
+    {
+      "src": "icons/icon-portfolio-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icons/icon-portfolio-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
