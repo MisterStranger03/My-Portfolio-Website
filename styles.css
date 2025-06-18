@@ -1905,6 +1905,24 @@ input, button, textarea, a {
     width: 40px;
   }
 
+  /* .exp-role {
+    align-items: center !important;
+    display: flex;
+    justify-content: center !important;
+
+  } */
+  .exp-details li{
+    font-size: 0.6rem; /* Smaller font size for mobile */
+  }
+
+  .exp-duration {
+    font-size: 0.8rem;;
+  }
+
+  .exp-company {
+    font-size: 0.9rem;
+  }
+
   .flash-card.expanded {
     width: 300px;
   }
