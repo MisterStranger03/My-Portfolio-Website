@@ -250,6 +250,48 @@ sidePanelLinks.forEach(link => {
 document.addEventListener("DOMContentLoaded", () => {
   // Get all sections that correspond to nav entries.
   const sections = document.querySelectorAll("section[id]");
+
+
+  //CONTACT FORM LOGIC
+
+
+const contactForm = document.getElementById('contact-form');
+  const formStatus = document.getElementById('form-status');
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('contact-name').value;
+      const email = document.getElementById('contact-email').value;
+      const message = document.getElementById('contact-message').value;
+
+      formStatus.textContent = 'Sending...';
+      formStatus.style.color = 'inherit';
+
+      fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message }),
+      })
+      .then(response => {
+        if (!response.ok) {
+          return response.json().then(err => { throw new Error(err.message || 'Something went wrong') });
+        }
+        return response.json();
+      })
+      .then(data => {
+        formStatus.textContent = data.message;
+        formStatus.style.color = 'green';
+        contactForm.reset();
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        formStatus.textContent = `Error: ${error.message}`;
+        formStatus.style.color = 'red';
+      });
+    });
+  }
+
+
   
   // Get all nav links from main nav and side panel.
   const mainNavLinks = document.querySelectorAll("nav ul li a");
