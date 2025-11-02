@@ -1,5 +1,3 @@
-// Set a timeout for hiding the loading screen after 2.5 seconds
-// Set a timeout for hiding the loading screen after 3 seconds
 setTimeout(() => {
   const loadingScreen = document.getElementById('loading-screen');
   const content = document.getElementById('content');
