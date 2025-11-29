@@ -1,39 +1,62 @@
-// Add this line at the very top to load variables from .env file for local development
-require('dotenv').config();
+// api/send-email.js
+import nodemailer from "nodemailer";
 
-const nodemailer = require('nodemailer');
+const transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true, // use SSL
+  auth: {
+    user: process.env.GMAIL_USER,            // your Gmail address
+    pass: process.env.GMAIL_APP_PASSWORD,    // 16-char App Password
+  },
+});
 
-export default function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ message: 'Only POST requests are allowed' });
-  }
+export default async function handler(req, res) {
+  if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
-  const { name, email, message } = req.body;
+  try {
+    const { name, email, message } = req.body ?? {};
 
-  // process.env will use your .env file locally, and Vercel's variables in production
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.GMAIL_EMAIL,
-      pass: process.env.GMAIL_APP_PASSWORD,
-    },
-  });
-
-  const mailOptions = {
-    from: `"${name}" <${email}>`,
-    to: process.env.GMAIL_EMAIL,
-    subject: `New Contact Form Submission from ${name}`,
-    html: `<p>You have a new submission:</p>
-           <p><strong>Name:</strong> ${name}</p>
-           <p><strong>Email:</strong> ${email}</p>
-           <p><strong>Message:</strong> ${message}</p>`,
-  };
-
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.error('Error sending email:', error);
-      return res.status(500).json({ message: 'Error sending email.' });
+    if (!name || !email || !message) {
+      return res.status(400).json({ error: "Name, email and message are required." });
     }
-    return res.status(200).json({ message: 'Message sent successfully!' });
-  });
+
+    if (req.body.hp) {
+      // probable bot
+      return res.status(200).json({ message: "Thanks!" }); 
+    }
+
+    // Build the mail
+    const mailOptions = {
+      from: process.env.GMAIL_USER,         
+      to: process.env.RECEIVER_EMAIL,       
+      subject: `Contact form: ${name}`,
+      replyTo: email,                       
+      text: `You received a new contact form submission:\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+      html: `
+        <h3>New contact form submission</h3>
+        <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+        <p><strong>Message:</strong><br/>${escapeHtml(message).replace(/\n/g, "<br/>")}</p>
+      `,
+    };
+
+    // Send the email
+    await transporter.sendMail(mailOptions);
+
+    return res.status(200).json({ message: "Message sent" });
+  } catch (err) {
+    console.error("send-email error:", err);
+    return res.status(500).json({ error: "Failed to send message" });
+  }
+}
+
+// small helper: escape to avoid injection in HTML email
+function escapeHtml(unsafe) {
+  return String(unsafe)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }

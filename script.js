@@ -370,3 +370,42 @@ if ('serviceWorker' in navigator) {
       });
   });
 }
+
+// script.js
+const form = document.getElementById("contactForm");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const submitBtn = form.querySelector("button[type='submit']");
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Sending...";
+
+  const payload = {
+    name: form.name.value.trim(),
+    email: form.email.value.trim(),
+    message: form.message.value.trim(),
+    hp: form.hp?.value?.trim() || "" 
+  };
+
+  try {
+    const res = await fetch("/api/send-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) throw new Error(data?.error || "Send failed");
+
+    alert("Message sent — thank you!");
+    form.reset();
+  } catch (err) {
+    console.error(err);
+    alert("Failed to send message. Please try again later.");
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Send Message";
+  }
+});

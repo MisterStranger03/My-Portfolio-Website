@@ -20,6 +20,6 @@
   "homepage": "https://github.com/MisterStranger03/My-Portfolio-Website#readme",
   "dependencies": {
     "dotenv": "^17.2.1",
-    "nodemailer": "^7.0.5"
+    "nodemailer": "^7.0.11"
   }
 }

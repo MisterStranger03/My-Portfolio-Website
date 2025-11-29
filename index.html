@@ -301,12 +301,22 @@
 
         <section id="contact">
             <h2>Contact Me</h2>
-            <form class="contact-form">
+            <!-- <form class="contact-form">
                 <input id="contact-name" type="text" placeholder="Your Name" required>
                 <input id="contact-email" type="email" placeholder="Your Email" required>
                 <textarea id="contact-message" placeholder="Your Message" rows="5" required></textarea>
                 <button type="submit">Send Message</button>
+            </form> -->
+            <form class="contact-form" id="contactForm">
+            <input id="contact-name" name="name" type="text" placeholder="Your Name" required />
+            <input id="contact-email" name="email" type="email" placeholder="Your Email" required />
+            <textarea id="contact-message" name="message" placeholder="Your Message" rows="5" required></textarea>
+
+            <input type="text" name="hp" style="display:none" tabindex="-1" autocomplete="off">
+
+            <button type="submit">Send Message</button>
             </form>
+            
             <div class="social-handles">
                 <a href="https://www.linkedin.com/in/raman-sah-stranger/" target="_blank"><i class="fab fa-linkedin"></i></a>
                 <a href="https://github.com/MisterStranger03" target="_blank"><i class="fab fa-github"></i></a>
