@@ -426,3 +426,12 @@ form.addEventListener("submit", async (e) => {
     submitBtn.textContent = "Send Message";
   }
 });
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.addEventListener('message', (event) => {
+    if (event.data?.type === 'NEW_VERSION_AVAILABLE') {
+      console.log('New version available — reloading');
+      window.location.reload();
+    }
+  });
+}
