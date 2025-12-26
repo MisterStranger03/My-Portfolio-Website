@@ -331,4 +331,152 @@
 </body>
 
 <script src="script.js"></script>
+<script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+<script src="https://unpkg.com/three@0.155.0/examples/js/postprocessing/EffectComposer.js"></script>
+<script src="https://unpkg.com/three@0.155.0/examples/js/postprocessing/RenderPass.js"></script>
+<script src="https://unpkg.com/three@0.155.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+
+<script>
+
+let scene, camera, renderer;
+let starsNear, starsMid, starsFar;
+let animationId = null;
+let mouseX = 0, mouseY = 0;
+
+const canvas = document.getElementById("starfield");
+
+/* ---------- INIT ---------- */
+function initStarfield() {
+  if (renderer) return;
+
+  scene = new THREE.Scene();
+
+  camera = new THREE.PerspectiveCamera(
+    75,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    2000
+  );
+  camera.position.z = 300;
+
+  renderer = new THREE.WebGLRenderer({
+    canvas,
+    alpha: true,
+    antialias: true
+  });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(2, window.devicePixelRatio));
+
+  starsFar  = createStars(5000, 1.2, 0.3);
+  starsMid  = createStars(3000, 2.2, 0.6);
+  starsNear = createStars(1500, 3.8, 1.0);
+
+  scene.add(starsFar, starsMid, starsNear);
+
+  document.addEventListener("mousemove", onMouseMove);
+  window.addEventListener("scroll", onScroll);
+  window.addEventListener("resize", onResize);
+
+  animate();
+}
+
+/* ---------- STAR CREATOR ---------- */
+function createStars(count, size, brightness) {
+  const geometry = new THREE.BufferGeometry();
+  const positions = new Float32Array(count * 3);
+
+  for (let i = 0; i < count * 3; i += 3) {
+    positions[i]     = (Math.random() - 0.5) * 2000;
+    positions[i + 1] = (Math.random() - 0.5) * 2000;
+    positions[i + 2] = -Math.random() * 2000;
+  }
+
+  geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+
+  const material = new THREE.PointsMaterial({
+    color: 0xffffff,
+    size,
+    transparent: true,
+    opacity: brightness,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false
+  });
+
+  return new THREE.Points(geometry, material);
+}
+
+/* ---------- ANIMATE ---------- */
+function animate() {
+  animationId = requestAnimationFrame(animate);
+
+  // Gentle rotation (twinkle illusion)
+  starsFar.rotation.y  += 0.0001;
+  starsMid.rotation.y  += 0.0002;
+  starsNear.rotation.y += 0.00035;
+
+  // Hover parallax (STRONG)
+  camera.position.x += (mouseX * 60 - camera.position.x) * 0.05;
+  camera.position.y += (-mouseY * 60 - camera.position.y) * 0.05;
+
+  renderer.render(scene, camera);
+}
+
+/* ---------- EVENTS ---------- */
+function onMouseMove(e) {
+  mouseX = (e.clientX / window.innerWidth) - 0.5;
+  mouseY = (e.clientY / window.innerHeight) - 0.5;
+}
+
+function onScroll() {
+  const scroll = window.scrollY;
+
+  // Flying INTO space
+  camera.position.z = 300 - scroll * 0.25;
+
+  starsNear.position.z = -scroll * 0.6;
+  starsMid.position.z  = -scroll * 0.3;
+  starsFar.position.z  = -scroll * 0.1;
+}
+
+function onResize() {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+/* ---------- STOP ---------- */
+function stopStarfield() {
+  if (!renderer) return;
+
+  cancelAnimationFrame(animationId);
+  renderer.dispose();
+
+  scene.clear();
+  renderer = null;
+  scene = null;
+  camera = null;
+}
+
+/* ---------- DARK MODE HOOK ---------- */
+function toggleMode() {
+  document.body.classList.toggle("dark-mode");
+  const isDark = document.body.classList.contains("dark-mode");
+
+  document.querySelector(".toggle-button").textContent = isDark ? "☀️" : "🌙";
+
+  if (isDark) {
+    initStarfield();
+  } else {
+    stopStarfield();
+  }
+}
+
+/* ---------- AUTO START ---------- */
+window.addEventListener("load", () => {
+  if (document.body.classList.contains("dark-mode")) {
+    initStarfield();
+  }
+});
+</script>
+
 </html>

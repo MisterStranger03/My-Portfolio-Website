@@ -28,6 +28,20 @@
   color: white;
 }
 
+
+#starfield {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background: radial-gradient(circle at center, #050505, #000000);
+  display: none;
+}
+
+.dark-mode #starfield {
+  display: block;
+}
+
 /* Text Animation Styles */
 #loading-text {
   font-size: 2rem;
@@ -1012,7 +1026,8 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
         .dark-mode #contact {
             padding: 100px 20px;
     text-align: center;
-    background:#1c1c1c;
+    /* background:#1c1c1c; */
+    background: transparent;
     color: #333; /* You can adjust this color if you want to change the text color */
     animation: glow 1.5s infinite alternate;
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ffffff, 0 0 20px #ff9800, 0 0 25px #ff9800, 0 0 30px #ff9800;
@@ -1098,7 +1113,8 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
         }
 
         .dark-mode footer {
-            background-color: #333;
+            /* background-color: #333; */
+            background: transparent;
         }
 
         /* Animations */
@@ -1732,6 +1748,7 @@ input, button, textarea, a {
 
 .dark-mode .hero {
   cursor: none !important; /* Ensure custom cursor is used in dark mode */
+  background: transparent;
 }
 
 .myprojects, .Education, .Skills {
@@ -1746,7 +1763,7 @@ input, button, textarea, a {
 }
 
 .dark-mode .experience-section {
-  background: #121212;
+  background: transparent;
 }
 
 .experience-section h2 {

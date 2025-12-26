@@ -17,10 +17,27 @@ setTimeout(() => {
 }, 3000); // 3000ms = 3 seconds (adjust as necessary for your needs)
 
 // Toggle Dark/Light Mode
+// function toggleMode() {
+//   document.body.classList.toggle('dark-mode');
+//   const toggleButton = document.querySelector('.toggle-button');
+//   toggleButton.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+// }
+
 function toggleMode() {
   document.body.classList.toggle('dark-mode');
+
   const toggleButton = document.querySelector('.toggle-button');
-  toggleButton.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+  const isDark = document.body.classList.contains('dark-mode');
+
+  // Toggle icon
+  toggleButton.textContent = isDark ? '☀️' : '🌙';
+
+  // ⭐ Starfield control
+  if (isDark) {
+    initStarfield();
+  } else {
+    stopStarfield();
+  }
 }
 
 // Expand a flash card
