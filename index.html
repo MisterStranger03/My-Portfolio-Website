@@ -346,7 +346,6 @@ let mouseX = 0, mouseY = 0;
 
 const canvas = document.getElementById("starfield");
 
-/* ---------- INIT ---------- */
 function initStarfield() {
   if (renderer) return;
 
@@ -381,7 +380,6 @@ function initStarfield() {
   animate();
 }
 
-/* ---------- STAR CREATOR ---------- */
 function createStars(count, size, brightness) {
   const geometry = new THREE.BufferGeometry();
   const positions = new Float32Array(count * 3);
@@ -406,23 +404,22 @@ function createStars(count, size, brightness) {
   return new THREE.Points(geometry, material);
 }
 
-/* ---------- ANIMATE ---------- */
+
 function animate() {
   animationId = requestAnimationFrame(animate);
 
-  // Gentle rotation (twinkle illusion)
+
   starsFar.rotation.y  += 0.0001;
   starsMid.rotation.y  += 0.0002;
   starsNear.rotation.y += 0.00035;
 
-  // Hover parallax (STRONG)
+ 
   camera.position.x += (mouseX * 60 - camera.position.x) * 0.05;
   camera.position.y += (-mouseY * 60 - camera.position.y) * 0.05;
 
   renderer.render(scene, camera);
 }
 
-/* ---------- EVENTS ---------- */
 function onMouseMove(e) {
   mouseX = (e.clientX / window.innerWidth) - 0.5;
   mouseY = (e.clientY / window.innerHeight) - 0.5;
@@ -431,7 +428,7 @@ function onMouseMove(e) {
 function onScroll() {
   const scroll = window.scrollY;
 
-  // Flying INTO space
+
   camera.position.z = 300 - scroll * 0.25;
 
   starsNear.position.z = -scroll * 0.6;
@@ -445,7 +442,6 @@ function onResize() {
   renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
-/* ---------- STOP ---------- */
 function stopStarfield() {
   if (!renderer) return;
 
@@ -458,7 +454,6 @@ function stopStarfield() {
   camera = null;
 }
 
-/* ---------- DARK MODE HOOK ---------- */
 function toggleMode() {
   document.body.classList.toggle("dark-mode");
   const isDark = document.body.classList.contains("dark-mode");
@@ -472,7 +467,6 @@ function toggleMode() {
   }
 }
 
-/* ---------- AUTO START ---------- */
 window.addEventListener("load", () => {
   if (document.body.classList.contains("dark-mode")) {
     initStarfield();
