@@ -142,9 +142,9 @@ My-Portfolio-Website/
 
 **Raman**
 
-- GitHub: [@MisterStranger03](MisterStranger03)
-- Linkedin: [https://www.linkedin.com/in/raman-sah-stranger](Raman_Sah)
-- Portfolio: [https://raman-portfolio-website.vercel.app/](Raman_Sah)
+- GitHub: [@MisterStranger03](https://github.com/MisterStranger03)
+- Linkedin: [@Raman_Sah](https://www.linkedin.com/in/raman-sah-stranger)
+- Portfolio: [Raman_Sah-Portfolio](https://raman-portfolio-website.vercel.app/)
 
 ---
 
