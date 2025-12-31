@@ -2,7 +2,7 @@
 
 A modern, responsive personal portfolio website showcasing my projects, skills, and professional journey.
 
-🔗 **Live Demo:** [https://raman-portfolio-website.vercel.app/](https://raman-portfolio-website.vercel.app/)
+🔗 **Live Demo:** [https://ramansah.vercel.app](https://ramansah.vercel.app/)
 
 ## 📋 Table of Contents
 
@@ -143,7 +143,8 @@ My-Portfolio-Website/
 **Raman**
 
 - GitHub: [@MisterStranger03](https://github.com/MisterStranger03)
-- Portfolio: [https://raman-portfolio-website.vercel.app/](https://raman-portfolio-website.vercel.app/)
+- Linkedin: [@Raman_Sah](https://www.linkedin.com/in/raman-sah-stranger)
+- Portfolio: [Raman_Sah-Portfolio](https://raman-portfolio-website.vercel.app/)
 
 ---
 

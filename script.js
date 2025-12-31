@@ -11,10 +11,9 @@ setTimeout(() => {
   // Re-enable scrolling
   document.body.style.overflow = 'auto';
 
-  // Add classes to trigger animations after the loading screen disappears
   heroImg.classList.add('fadeIn', 'slideUp');
   heroHeader.classList.add('fadeInText');
-}, 3000); // 3000ms = 3 seconds (adjust as necessary for your needs)
+}, 3000); // 3000ms = 3 seconds 
 
 // Toggle Dark/Light Mode
 // function toggleMode() {
@@ -29,10 +28,9 @@ function toggleMode() {
   const toggleButton = document.querySelector('.toggle-button');
   const isDark = document.body.classList.contains('dark-mode');
 
-  // Toggle icon
   toggleButton.textContent = isDark ? '☀️' : '🌙';
 
-  // ⭐ Starfield control
+
   if (isDark) {
     initStarfield();
   } else {
