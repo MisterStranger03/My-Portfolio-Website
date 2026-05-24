@@ -268,7 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
   //CONTACT FORM LOGIC
 
 
-const contactForm = document.getElementById('contact-form');
+const contactForm = document.getElementById('contactForm');
   const formStatus = document.getElementById('form-status');
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
