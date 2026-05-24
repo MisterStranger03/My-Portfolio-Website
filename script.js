@@ -268,7 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
   //CONTACT FORM LOGIC
 
 
-const contactForm = document.getElementById('contact-form');
+const contactForm = document.getElementById('contactForm');
   const formStatus = document.getElementById('form-status');
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
@@ -276,6 +276,7 @@ const contactForm = document.getElementById('contact-form');
       const name = document.getElementById('contact-name').value;
       const email = document.getElementById('contact-email').value;
       const message = document.getElementById('contact-message').value;
+      const hp = document.querySelector('input[name="hp"]').value;
 
       formStatus.textContent = 'Sending...';
       formStatus.style.color = 'inherit';
@@ -283,7 +284,7 @@ const contactForm = document.getElementById('contact-form');
       fetch('/api/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, message }),
+        body: JSON.stringify({ name, email, message, hp }),
       })
       .then(response => {
         if (!response.ok) {
